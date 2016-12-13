@@ -1,4 +1,4 @@
-package com.BV.LinearGradient;
+package com.inkitt.shimmer;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -24,7 +24,6 @@ public class LinearGradientPackage implements ReactPackage {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Arrays.<ViewManager>asList(
-            new LinearGradientManager());
+        return Arrays.<ViewManager>asList();
     }
 }
