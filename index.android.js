@@ -4,30 +4,45 @@ import React, {
 } from 'react';
 
 import {
+  requireNativeComponent,
   View,
-  //requireNativeComponent,
+  StyleSheet,
 } from 'react-native';
 
 export default class Shimmer extends Component {
-  // static propTypes = {
-  //   animating: PropTypes.bool,
-  //   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
-  //   pauseDuration: PropTypes.number,
-  //   animationOpacity: PropTypes.number,
-  //   opacity: PropTypes.number,
-  //   speed: PropTypes.number,
-  //   highlightLength: PropTypes.number,
-  //   beginFadeDuration: PropTypes.number,
-  //   endFadeDuration: PropTypes.number,
-  // };
-  //
-  // static defaultProps = {
-  //   animating: true,
-  // };
+  static propTypes = {
+    ...View.propTypes,
+    animating: PropTypes.bool,
+    direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+    pauseDuration: PropTypes.number,
+    animationOpacity: PropTypes.number,
+    opacity: PropTypes.number,
+    speed: PropTypes.number,
+    highlightLength: PropTypes.number,
+    beginFadeDuration: PropTypes.number,
+    endFadeDuration: PropTypes.number,
+  };
+
+  static defaultProps = {
+    animating: true,
+  };
 
   render() {
-    return null;
+    return (
+      <RCTShimmeringView { ...this.props }>
+        <View style={[styles.container]}>
+          {this.props.children}
+        </View>
+      </RCTShimmeringView>);
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: window.width,
+    height: window.height
+  }
+});
+
 
 const RCTShimmeringView = requireNativeComponent('RCTShimmeringView', Shimmer);
