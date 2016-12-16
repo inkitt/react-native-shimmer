@@ -28,21 +28,8 @@ export default class Shimmer extends Component {
   };
 
   render() {
-    return (
-      <RCTShimmeringView { ...this.props }>
-        <View style={[styles.container]}>
-          {this.props.children}
-        </View>
-      </RCTShimmeringView>);
+    return (<RCTShimmeringView { ...this.props } />);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: window.width,
-    height: window.height
-  }
-});
-
 
 const RCTShimmeringView = requireNativeComponent('RCTShimmeringView', Shimmer);

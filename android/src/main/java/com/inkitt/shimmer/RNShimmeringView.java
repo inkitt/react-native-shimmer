@@ -2,25 +2,15 @@ package com.inkitt.shimmer;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 
-public class RNShimmeringView extends ShimmerFrameLayout {
+public class RNShimmeringView extends ViewGroup {
     /** The amount of space used by children in the left gutter. */
     private int mLeftWidth;
 
@@ -33,17 +23,22 @@ public class RNShimmeringView extends ShimmerFrameLayout {
 
     public RNShimmeringView(Context context) {
         super(context);
-//        this.startShimmerAnimation();
+        init();
     }
 
     public RNShimmeringView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-//        this.startShimmerAnimation();
+        init();
     }
 
     public RNShimmeringView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-//        this.startShimmerAnimation();
+        init();
+    }
+
+    public void init() {
+//        this.isAutoStart();
+//        this.setDuration(3000);
     }
 
     /**
@@ -137,43 +132,22 @@ public class RNShimmeringView extends ShimmerFrameLayout {
         if (child != null && child.getVisibility() != GONE) {
             final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
-            final int width = child.getMeasuredWidth();
-            final int height = child.getMeasuredHeight();
-
             mTmpContainerRect.left = middleLeft + lp.leftMargin;
             mTmpContainerRect.right = middleRight - lp.rightMargin;
             mTmpContainerRect.bottom = parentBottom - lp.bottomMargin;
 
-            // Use the child's gravity and size to determine its final
-            // frame within its container.
-//            Gravity.apply(Gravity.START, width, height, mTmpContainerRect, mTmpChildRect);
-//            Gravity.applyDisplay(lp.gravity, width, height, mTmpContainerRect, mTmpChildRect);
-
-            // Place the child.
-//            child.layout(leftPos, parentTop,
-//                    1000, parentBottom);
             child.layout(mTmpChildRect.left, mTmpChildRect.top,
                     mTmpChildRect.right, mTmpChildRect.bottom);
         }
 
 
-        this.startShimmerAnimation();
+//        this.startShimmerAnimation();
     }
 
     // ----------------------------------------------------------------------
     // The rest of the implementation is for custom per-child layout parameters.
     // If you do not need these (for example you are writing a layout manager
     // that does fixed positioning of its children), you can drop all of this.
-
-//    @Override
-//    public LayoutParams generateLayoutParams(AttributeSet attrs) {
-//        return new RNShimmeringView.LayoutParams(getContext(), attrs);
-//    }
-//
-//    @Override
-//    protected LayoutParams generateDefaultLayoutParams() {
-//        return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-//    }
 
     @Override
     protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
