@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 
-public class RNShimmeringView extends ViewGroup {
+public class RNShimmeringView extends ShimmerFrameLayout {
     /** The amount of space used by children in the left gutter. */
     private int mLeftWidth;
 
@@ -37,8 +37,8 @@ public class RNShimmeringView extends ViewGroup {
     }
 
     public void init() {
-//        this.isAutoStart();
-//        this.setDuration(3000);
+       this.isAutoStart();
+       this.setDuration(3000);
     }
 
     /**
@@ -141,7 +141,7 @@ public class RNShimmeringView extends ViewGroup {
         }
 
 
-//        this.startShimmerAnimation();
+       this.startShimmerAnimation();
     }
 
     // ----------------------------------------------------------------------
